@@ -1,8 +1,10 @@
-# Uncertainty in Image Classification
+# Uncertainty in Image Classification (2017)
 ___
 
 <center>**Matthew Kim**</center>
+
 <center>Undergraduate at University of Toronto</center>
+
 <center>mtt.kim@mail.utoronto.ca</center>
 
 ## 1. Introduction
@@ -21,14 +23,14 @@ I compare how well these models detect "uncertain" images.
 ## 1. Data
 
 #### 1.1 Source
-ImageNet's 2011 Fall Release: lemons, mangoes, and chairs (to be uncertain)
+ImageNet's 2011 Fall Release
 
 #### 1.2 Preprocessing
 1. Crop the images according to their bounding boxes.
 2. Pad the images in with pixels to make them square shaped.
 3. Resize the image to 32x32x3 pixels.
 
-![](data/apples/cropandsquare/n07739125_1058_0.JPEG)
+![](images/n07739125_1058_0.JPEG)
 
 #### 1.3 Black padding vs. random padding
 As a little bonus experiment, I ran an identically structured convolutional neural network against the dataset using both random and black padding.
@@ -46,7 +48,7 @@ This is because we want to try to prevent the neural network from learning irrel
 The CNN has three layers of convolution followed by max pooling and then two fully connected layers.
 
 ![](References/7603144-fig-1-large.gif)
-	<center>From Fruit Recognition based on convolutional neural network [1]</center>
+	<center>From Fruit Recognition based on convolutional neural network<sup>4</sup></center>
 
 ##### Performance
 ![](References/cnn_w_thresh.png)
@@ -100,19 +102,20 @@ The most successful model was the generative model, mixture of gaussians. It suc
 
 The best model for this problem may be a combination of a neural network and mixture of gaussian.
 
-This problem could be explored further by testing more models. A fourth model for discriminative models, using SVMs could be explored. It has been used in the past to classify fruits with an 88% accuracy[^three]. Other discriminative models may be better for this specific fruit classification problem for the classification.
+This problem could be explored further by testing more models. A fourth model for discriminative models, using SVMs could be explored. It has been used in the past to classify fruits with an 88% accuracy<sup>2</sup>. Other discriminative models may be better for this specific fruit classification problem for the classification.
 
-There are a some concepts which try to solve the problem of uncertainty like fuzzy methods. Fuzzy methods have been around since 1996[^four]. It may be interesting to compare the fuzzy methods with the generative model. However, the generative model's results on our uncertainty test were perfect with a 0 percent classification rate on uncertain inputs.
-
-[^cnn]: Lei Hou, QingXiang Wu, Qiyan Sun,  Heng Yang, Pengfei Li, "Fruit recognition based on convolution neural network", IEEE Access Code 16397890, Web. 1 Dec. 2016
-[^mog]: Mrs.R.Shijitha, M.Anitha, B.Keerthiga, A.Manoranjitham, "Enhanced Technique for Fruit Sorting and Grading In Image Processing", International Journal of Research in Electronics, Web. 1 Dec. 2016
-[^three]: Zhang, Y., & Wu, L. "Classification of fruits using computer vision and a multiclass support vector machine. Sensors", Open Access, Web. 1 Dec 2016
-[^four]: Cheng, Tao, Martien Molenaar, and Hui Lin. "Formalizing Fuzzy Objects from Uncertain Classification Results." International Journal of Geographical Information Science 15.1 (2001): 27-42. Web. 1 Dec. 2016
-[^hierarchical]: Yanming Guo, Yu Liu, et al. "CNN-RNN: a large-scale hierarchical image classification framework" Open Access
+There are a some concepts which try to solve the problem of uncertainty like fuzzy methods. Fuzzy methods have been around since 1996<sup>3</sup>. It may be interesting to compare the fuzzy methods with the generative model. However, the generative model's results on our uncertainty test were perfect with a 0 percent classification rate on uncertain inputs.
 
 #### 3. Code
 
-The code for the convolutional neural network and mixture of guassians are in the folders 'CNN' and 'MoG'. They are based on my code from assignment 2. I've made the convolutional neural network able to take in images with three channels and changed the structure of the network. The mixture of guassians has functions to get certain stats which are displayed in the graphics here.
+The code for the convolutional neural network and mixture of guassians are in the folders 'CNN' and 'MoG'.
 
-There is also a lot of code to process the data which is in the data folder. I've not included the images because they are huge. However, the code to generate the .npzs resulting from the images, 'process.py' is in the data folder.
+There is also a lot of code to process the data which is in the data folder. I've not included the images because they are huge. If you'd like, you can download them from ImageNet's 2011 Fall Release. The code to generate the .npzs resulting from the images, 'process.py' is in the data folder.
 
+#### References
+
+<sup>1</sup>: Yanming Guo, Yu Liu, et al. "CNN-RNN: a large-scale hierarchical image classification framework" Open Access
+<sup>2</sup>: Zhang, Y., & Wu, L. "Classification of fruits using computer vision and a multiclass support vector machine. Sensors", Open Access, Web. 1 Dec 2016
+<sup>3</sup>: Cheng, Tao, Martien Molenaar, and Hui Lin. "Formalizing Fuzzy Objects from Uncertain Classification Results." International Journal of Geographical Information Science 15.1 (2001): 27-42. Web. 1 Dec. 2016
+<sup>4</sup>: Lei Hou, QingXiang Wu, Qiyan Sun,  Heng Yang, Pengfei Li, "Fruit recognition based on convolution neural network", IEEE Access Code 16397890, Web. 1 Dec. 2016
+<sup>5</sup>: Mrs.R.Shijitha, M.Anitha, B.Keerthiga, A.Manoranjitham, "Enhanced Technique for Fruit Sorting and Grading In Image Processing", International Journal of Research in Electronics, Web. 1 Dec. 2016

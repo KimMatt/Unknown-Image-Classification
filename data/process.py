@@ -42,7 +42,6 @@ def cropandsquare():
 	}
 
 	np.savez_compressed('regular_fruits.npz', **save)
-	#np.savez_compressed('non_cat_fruits.npz',**save)
 
 def cropandsquareTest():
 
@@ -116,10 +115,7 @@ def getSets(label,fruit,n_training,n_valid,n_test,o_training, o_valid, o_test, o
 
 				# Resize image
 				new = imresize(new, (32,32), interp='cubic')
-				#new = new.reshape([10000,3])
-				#new = new.reshape([100,100,3])
-				#imsave('./processed/' + file + '_' + str(i) + '.JPEG',new)
-
+				# Vectorize
 				new = new.reshape(1024,3).astype(int)
 
 				if(counter < n_training):
@@ -136,6 +132,7 @@ def getSets(label,fruit,n_training,n_valid,n_test,o_training, o_valid, o_test, o
 	print(fruit)
 	print(counter)
 
+	# Saving a link to the original image so that one can trace back the results.
 	return o_training + training, o_valid + valid, o_test + test, o_training_labels + training_labels, o_valid_labels + valid_labels, o_test_labels + test_labels
 
 
@@ -191,10 +188,8 @@ def getTestSets(label,fruit,n_test, o_test, o_test_labels):
 
 				# Resize image
 				new = imresize(new, (32,32), interp='cubic')
-				#new = new.reshape([10000,3])
-				#new = new.reshape([100,100,3])
-				#imsave('./processed/' + file + '_' + str(i) + '.JPEG',new)
 
+				# Vectorize
 				new = new.reshape(1024,3).astype(int)
 
 				if(counter < n_test):
@@ -210,7 +205,7 @@ def getTestSets(label,fruit,n_test, o_test, o_test_labels):
 	return o_test + test, o_test_labels + test_labels
 
 
-			
+
 
 if __name__ == "__main__":
 	main()
